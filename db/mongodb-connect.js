@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const mongoPath = process.env.MONGODB_URI || 'mongodb://localhost:27017/MovieApp'
+const mongoPath = process.env.MONGODB_URI+"?authMode=scram-sha1" || 'mongodb://localhost:27017/MovieApp'
 
 const connect = (movie) => { 
     MongoClient.connect(mongoPath, (err, client) => {
