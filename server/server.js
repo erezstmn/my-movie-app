@@ -7,11 +7,16 @@ const {Movie} = require('./models/movie');
 
 const app = express();
 const publicPath = path.join(__dirname, '../public')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 /////////////////////////////////////////////
 app.use(express.static(publicPath));
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 app.post('/movies', (req,res) => {
     let movie = new Movie({
